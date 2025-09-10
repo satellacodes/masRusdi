@@ -1,0 +1,70 @@
+:root{--bg:#0f1724;--card:#0b1220;--accent:#0b74de;--muted:#9aa4b2}
+*{box-sizing:border-box}
+body{font-family:Inter, Arial, sans-serif;margin:0;background:linear-gradient(180deg,#f6f8fb,#eef3fb);color:#0b1220}
+.header{display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:transparent}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{font-size:28px}
+.brand h1{margin:0;font-size:18px}
+.muted{color:var(--muted);font-size:13px;margin:0}
+
+.nav .tab{border:none;background:transparent;padding:10px 14px;border-radius:8px;margin-left:8px;cursor:pointer;transition:all .18s ease}
+.nav .tab:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(11,20,34,.06)}
+.nav .active{background:linear-gradient(90deg,var(--accent),#0b59b8);color:white;box-shadow:0 8px 30px rgba(11,116,222,.12)}
+
+.main{padding:16px 28px}
+.footer{padding:12px 28px;color:var(--muted)}
+
+/* Editor layout */
+.editor{display:flex;gap:16px}
+.left{width:380px;background:white;border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(11,20,34,0.06)}
+.canvas-area{flex:1;background:linear-gradient(180deg,#fff,#fbfdff);border-radius:12px;padding:14px;box-shadow:0 8px 30px rgba(11,20,34,0.04);display:flex;align-items:center;justify-content:center;min-height:720px;overflow:hidden}
+
+.controls .file input{display:none}
+.controls .file{display:inline-block;margin-bottom:8px}
+.row{display:flex;gap:8px;align-items:center;margin-top:8px}
+.row.between{justify-content:space-between}
+.btn{padding:8px 12px;border-radius:10px;border:1px solid #e6eefc;background:white;cursor:pointer;transition:all .18s ease;box-shadow:none}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(11,20,34,0.06)}
+.btn.primary{background:var(--accent);color:#fff;border:none;box-shadow:0 14px 30px rgba(11,116,222,0.12)}
+
+.fields-panel{margin-top:12px}
+.fields-panel ul{list-style:none;padding:0;margin:0;max-height:380px;overflow:auto}
+.fields-panel li{padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #f0f4fb;background:#fbfdff;transition:all .15s ease}
+.fields-panel li.sel{box-shadow:0 8px 30px rgba(11,20,34,0.05);transform:scale(1.01)}
+
+.field-edit label{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+input[type=text], input[type=number], select, input[type=color]{width:100%;padding:8px;border-radius:8px;border:1px solid #e6eefc;margin-top:6px}
+
+/* canvas */
+.canvas-wrap{position:relative;border-radius:8px;padding:8px;transition:transform .18s ease;width:820px;height:1120px;overflow:hidden;border:1px solid rgba(11,20,34,0.04);background:linear-gradient(180deg,#fff,#fafcff)}
+.svg-frame{position:absolute;left:0;top:0;right:0;bottom:0}
+.ph{position:absolute;transform:translate(-50%,-50%);padding:6px 8px;border-radius:6px;background:rgba(11,20,34,0.06);backdrop-filter: blur(2px);cursor:grab;transition:transform .12s ease, box-shadow .12s ease, opacity .12s ease}
+.ph:hover{transform:translate(-50%,-50%) scale(1.03);box-shadow:0 6px 18px rgba(11,20,34,0.08)}
+.ph.selected{outline:2px solid rgba(11,116,222,0.18);background:linear-gradient(180deg,#fff,#f3f8ff)}
+
+.ph .ph-label{font-weight:600;font-size:13px;pointer-events:none}
+
+/* grid overlay */
+.canvas-wrap.grid-on{background-image:linear-gradient(to right, rgba(11,20,34,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(11,20,34,0.03) 1px, transparent 1px);background-size:20px 20px}
+
+/* Overlay mode */
+.overlay{display:flex;gap:16px}
+.overlay .left{width:360px}
+.canvas{flex:1;display:flex;align-items:center;justify-content:center;min-height:880px}
+.canvas-inner{position:relative;width:820px;height:1120px;border-radius:8px;background:white;border:1px solid rgba(11,20,34,0.04);overflow:hidden;padding:6px}
+.render-txt{position:absolute;transform:translate(-50%,-50%);white-space:pre-wrap;transition:all .12s ease;pointer-events:none}
+.muted{color:var(--muted)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.5), rgba(2,6,23,0.35));display:flex;align-items:center;justify-content:center;z-index:50;animation:fadein .22s ease}
+.modal-card{background:white;padding:18px;border-radius:12px;max-width:520px;box-shadow:0 30px 80px rgba(2,6,23,0.4)}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* subtle flash for export */
+.canvas-inner.flash{animation:flash .18s ease}
+@keyframes flash{0%{filter:brightness(1)}50%{filter:brightness(1.06)}100%{filter:brightness(1)}}
+
+/* responsive */
+@media(max-width:980px){ .editor{flex-direction:column} .left{width:100%} .canvas-area{padding:8px} }
